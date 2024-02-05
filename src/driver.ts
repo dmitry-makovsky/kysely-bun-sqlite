@@ -60,7 +60,7 @@ class BunSqliteConnection implements DatabaseConnection {
 
   executeQuery<O>(compiledQuery: CompiledQuery): Promise<QueryResult<O>> {
     const { sql, parameters } = compiledQuery
-    const stmt = this.#db.prepare(sql)
+    const stmt = this.#db.query(sql)
 
     return Promise.resolve({
       rows: stmt.all(parameters as any) as O[],
